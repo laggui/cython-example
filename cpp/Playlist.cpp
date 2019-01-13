@@ -66,10 +66,15 @@ std::vector<std::shared_ptr<Song>> Playlist::constructFromFile()
 			first = line.find(delim);
 			second = line.find(delim, first + 1);
 
-			newSongs.push_back(std::shared_ptr<Song>(new Song{ line.substr(first + 1, second - first - 1), // song
-															   line.substr(0, first), // artist
-															   line.substr(second + 1) // album
-															 }));
+			// newSongs.push_back(std::shared_ptr<Song>(new Song{ line.substr(first + 1, second - first - 1), // song
+			// 												   line.substr(0, first), // artist
+			// 												   line.substr(second + 1) // album
+			// 												 }));
+			// Use make_shared to create new shared pointer (only one heap-allocation - faster)
+			newSongs.push_back(std::make_shared<Song>(line.substr(first + 1, second - first - 1), // song
+													  line.substr(0, first), // artist
+													  line.substr(second + 1) // album
+													 ));
 		}
 		playlistFile.close();
 		mSongList.insert(mSongList.end(), newSongs.begin(), newSongs.end());

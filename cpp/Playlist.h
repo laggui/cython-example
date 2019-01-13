@@ -6,6 +6,9 @@
 #include <string>
 #include "Song.h"
 
+// Playlist is my example class which contains a number of songs. As expected, a Playlist does not own
+// the songs since multiple playlists can have the same song. Thus, this also allowed me to make use of
+// shared pointers.
 class Playlist
 {
 public:
