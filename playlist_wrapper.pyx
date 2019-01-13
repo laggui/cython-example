@@ -39,7 +39,7 @@ cdef class PySong:
     
     @staticmethod
     cdef create(shared_ptr[pl.Song] PySong_ptr):
-        # Create new MyStruct object. This does not create
+        # Create new PySong object. This does not create
         # new structure but does allocate a null pointer
         cdef PySong _mysong = PySong(_alloc=False)
         # Set pointer of cdef class to existing struct ptr
