@@ -12,9 +12,9 @@ cdef class PySong:
     cdef shared_ptr[pl.Song] ptr
     
     def __cinit__(self, _name=b"", _artist=b"", _album=b"", _alloc=True):
-        # exposing _alloc could be dangerous
+        # Note: exposing _alloc could be dangerous. Might need to rethink that even though this isn't the goal of this project.
         if _alloc:
-            self.ptr = shared_ptr[pl.Song](new pl.Song())
+            self.ptr = shared_ptr[pl.Song](new pl.Song()) # TO-DO: check for usage of make_shared in cython vs creating shared_ptr with new
             deref(self.ptr).name = _name
             deref(self.ptr).artist = _artist
             deref(self.ptr).album = _album
